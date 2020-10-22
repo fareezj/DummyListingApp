@@ -11,8 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DummyListingApp">
-        <activity android:name=".PlacesDetailsActivity"
-            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".EditPlaceActivity"></activity>
+        <activity android:name=".AddPlaceActivity" />
+        <activity
+            android:name=".PlacesDetailsActivity"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

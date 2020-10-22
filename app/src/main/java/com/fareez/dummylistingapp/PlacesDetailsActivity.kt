@@ -1,13 +1,16 @@
 package com.fareez.dummylistingapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.app.ActionBar
-import com.fareez.dummylistingapp.Model.PlacesModel
+import com.fareez.dummylistingapp.model.PlacesModel
 import com.fareez.dummylistingapp.databinding.ActivityPlacesDetailsBinding
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_places_details.*
 
 class PlacesDetailsActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_places_details)
@@ -22,17 +25,34 @@ class PlacesDetailsActivity : AppCompatActivity() {
         actionBar!!.setDisplayShowHomeEnabled(true)
 
         //Fetch extra parcelable data
-        val data = intent.getParcelableExtra<PlacesModel>("Place")
+        val fetchedData = intent.getParcelableExtra<PlacesModel>("Place")
 
         //Inflate the UI with fetched data
-        binding.tvTitleDetails.text = data?.title
-        binding.tvSubtitleDetails.text = data?.subtitle
-        binding.tvDescriptionDetails.text = data?.description
+        tv_title_details.text = fetchedData?.title
+        tv_subtitle_details.text = fetchedData?.subtitle
+        tv_description_details.text = fetchedData?.description
         Picasso.get()
-            .load(data?.image)
+            .load(fetchedData?.image)
             .fit()
             .error(android.R.drawable.ic_menu_report_image)
-            .into(binding.ivDetails)
+            .into(iv_details)
 
+        //FAB to edit activity
+        fab_update.setOnClickListener {
+            if(fetchedData != null){
+                val placeId: Int = fetchedData.id
+                val placeTitle: String = fetchedData.title
+                val placeSubtitle: String = fetchedData.subtitle
+                val placeDescription: String = fetchedData.description
+                val placeImage: String = fetchedData.image
+
+                val intent = Intent(this, EditPlaceActivity::class.java)
+                val parcel = PlacesModel(placeId, placeTitle, placeSubtitle,
+                    placeDescription, placeImage)
+
+                intent.putExtra("EditPlace", parcel)
+                startActivity(intent)
+            }
+        }
     }
 }
