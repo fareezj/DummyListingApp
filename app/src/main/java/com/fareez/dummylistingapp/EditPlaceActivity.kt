@@ -2,12 +2,14 @@ package com.fareez.dummylistingapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
+import android.view.View
 import androidx.appcompat.app.ActionBar
 import androidx.lifecycle.ViewModelProvider
 import com.fareez.dummylistingapp.model.PlacesModel
-import com.fareez.dummylistingapp.databinding.ActivityEditPlaceBinding
 import com.fareez.dummylistingapp.viewModel.PlaceViewModel
+import com.squareup.picasso.Picasso
+import android.view.View.OnFocusChangeListener
+import kotlinx.android.synthetic.main.activity_add_place.*
 import kotlinx.android.synthetic.main.activity_edit_place.*
 
 class EditPlaceActivity : AppCompatActivity() {
@@ -17,6 +19,19 @@ class EditPlaceActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_place)
+
+        //Preview Image on lostFocus
+        et_image_edit.setOnFocusChangeListener(OnFocusChangeListener { v, hasFocus ->
+            if (!hasFocus) {
+                //do job here when EditText loses focus
+                val imageURL = et_image_edit.text.toString()
+                Picasso.get()
+                    .load(imageURL)
+                    .fit()
+                    .error(android.R.drawable.ic_menu_report_image)
+                    .into(iv_previewEdit)
+            }
+        })
 
         //Set actionBar back button
         val actionBar : ActionBar? = supportActionBar

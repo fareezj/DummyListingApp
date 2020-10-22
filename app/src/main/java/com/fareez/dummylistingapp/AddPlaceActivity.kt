@@ -2,16 +2,18 @@ package com.fareez.dummylistingapp
 
 import android.app.Activity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.widget.Button
-import android.widget.EditText
+import android.view.View.OnFocusChangeListener
 import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.fareez.dummylistingapp.model.PlacesModel
 import com.fareez.dummylistingapp.viewModel.PlaceViewModel
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_add_place.*
+import kotlinx.android.synthetic.main.activity_places_details.*
+
 
 class AddPlaceActivity : AppCompatActivity() {
 
@@ -25,6 +27,19 @@ class AddPlaceActivity : AppCompatActivity() {
         val actionBar : ActionBar? = supportActionBar
         actionBar!!.setDisplayHomeAsUpEnabled(true)
         actionBar!!.setDisplayShowHomeEnabled(true)
+
+        //Preview Image on lostFocus
+        et_image.setOnFocusChangeListener(OnFocusChangeListener { v, hasFocus ->
+            if (!hasFocus) {
+                //do job here when EditText loses focus
+                val imageURL = et_image.text.toString()
+                Picasso.get()
+                    .load(imageURL)
+                    .fit()
+                    .error(android.R.drawable.ic_menu_report_image)
+                    .into(iv_preview)
+            }
+        })
 
         //Button to save new place
         btn_save.setOnClickListener {
