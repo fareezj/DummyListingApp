@@ -64,13 +64,32 @@
             android:layout_marginRight="30dp"
             android:textSize="18sp" />
 
+        <TextView
+            android:id="@+id/tv_imagePreview"
+            android:text="Image Preview:"
+            android:textStyle="bold"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:layout_below="@id/et_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/iv_preview"
+            android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/ic_baseline_add_photo_alternate_24"
+            android:layout_below="@id/tv_imagePreview"/>
+
         <Button
             android:id="@+id/btn_save"
             android:text="save"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_below="@id/et_image"
+            android:layout_below="@id/iv_preview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
