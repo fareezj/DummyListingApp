@@ -1,12 +1,10 @@
 package com.fareez.dummylistingapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.fareez.dummylistingapp.Adapter.MyAdapter
-import com.fareez.dummylistingapp.Data.Constants
-import com.fareez.dummylistingapp.Model.PlacesModel
-import com.fareez.dummylistingapp.databinding.ActivityMainBinding
+import com.fareez.dummylistingapp.ui.MovieActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -14,19 +12,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //Set viewBinding to interact with the UI
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        val intent = Intent(this, MovieActivity::class.java)
+        startActivity(intent)
 
-        //Create placesList object
-        var placesList: ArrayList<PlacesModel>? = null
-        placesList = Constants.defaultplacesList()
-
-        //Initialize adapter to recyclerView
-        val myAdapter = MyAdapter(placesList, this)
-        val recyclerView = binding.rvMain
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = myAdapter
+//        //Create placesList object
+//        var placesList: ArrayList<PlacesModel>? = null
+//        placesList = Constants.defaultplacesList()
+//
+//        //Initialize adapter to recyclerView
+//        val myAdapter = MyAdapter(placesList, this)
+//        val recyclerView = binding.rvMain
+//        recyclerView.layoutManager = LinearLayoutManager(this)
+//        recyclerView.adapter = myAdapter
 
     }
 }
