@@ -25,7 +25,7 @@ class MovieDataSource (
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Details>) {
         updateState(State.LOADING)
         compositeDisposable.add(
-                networkService.getMoviesByPage("Batman", 1, Constants.API_KEY)
+                networkService.getMoviesByPage(Constants.MOVIE_TITLE, 1, Constants.API_KEY)
                         .subscribe(
                                 { response ->
                                     updateState(State.DONE)
@@ -46,7 +46,7 @@ class MovieDataSource (
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Details>) {
         updateState(State.LOADING)
         compositeDisposable.add(
-                networkService.getMoviesByPage("Batman", params.key, Constants.API_KEY)
+                networkService.getMoviesByPage(Constants.MOVIE_TITLE, params.key, Constants.API_KEY)
                         .subscribe(
                                 { response ->
                                     updateState(State.DONE)
@@ -66,7 +66,7 @@ class MovieDataSource (
     }
 
 
-    private fun updateState(state: State) {
+    fun updateState(state: State) {
         this.state.postValue(state)
     }
 
@@ -82,7 +82,6 @@ class MovieDataSource (
     private fun setRetry(action: Action?) {
         retryCompletable = if (action == null) null else Completable.fromAction(action)
     }
-
 
 
 

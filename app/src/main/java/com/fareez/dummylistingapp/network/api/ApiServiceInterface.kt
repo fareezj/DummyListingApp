@@ -35,24 +35,35 @@ interface ApiServiceInterface {
         @Query("page") page: Int,
         @Query("apikey") apiKey: String) : Single<MovieModel>
 
-    companion object Factory {
-        val retrofit: Retrofit by lazy {
-            Retrofit.Builder()
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(
-                    GsonConverterFactory.create(
-                        GsonBuilder()
-                            .registerTypeAdapter(Date::class.java, DateTypeDeserializer())
-                            .setLenient().create()))
+//    companion object Factory {
+//        val retrofit: Retrofit by lazy {
+//            Retrofit.Builder()
+//                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+//                .addConverterFactory(
+//                    GsonConverterFactory.create(
+//                        GsonBuilder()
+//                            .registerTypeAdapter(Date::class.java, DateTypeDeserializer())
+//                            .setLenient().create()))
+//                .baseUrl(Constants.BASE_URL)
+//                .client(
+//                    OkHttpClient.Builder()
+//                        .readTimeout(120, TimeUnit.SECONDS)
+//                        .connectTimeout(120, TimeUnit.SECONDS)
+//                        .build())
+//                .build()
+//        }
+//        fun create(): ApiServiceInterface {
+//            return retrofit.create(ApiServiceInterface::class.java)
+//        }
+//    }
+
+    companion object {
+        fun getService(): ApiServiceInterface {
+            val retrofit = Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
-                .client(
-                    OkHttpClient.Builder()
-                        .readTimeout(120, TimeUnit.SECONDS)
-                        .connectTimeout(120, TimeUnit.SECONDS)
-                        .build())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
                 .build()
-        }
-        fun create(): ApiServiceInterface {
             return retrofit.create(ApiServiceInterface::class.java)
         }
     }

@@ -14,7 +14,7 @@ import io.reactivex.disposables.CompositeDisposable
 
 class MovieListViewModel: ViewModel() {
 
-    private val networkService: ApiServiceInterface = ApiServiceInterface.create()
+    private val networkService = ApiServiceInterface.getService()
     var movieList: LiveData<PagedList<Details>>
     private val compositeDisposable = CompositeDisposable()
     private val pageSize = 5
@@ -37,6 +37,10 @@ class MovieListViewModel: ViewModel() {
 
     fun retry(){
         movieDataSourceFactory.moviesDataSourceLiveData.value?.retry()
+    }
+
+    fun refresh(){
+        movieDataSourceFactory.moviesDataSourceLiveData.value?.invalidate()
     }
 
     fun listIsEmpty(): Boolean{

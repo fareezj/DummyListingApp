@@ -5,9 +5,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.fareez.dummylistingapp.R
-import com.fareez.dummylistingapp.adapter.MyAdapter
 import com.fareez.dummylistingapp.di.component.DaggerActivityComponent
 import com.fareez.dummylistingapp.di.module.ActivityModule
 import com.fareez.dummylistingapp.model.MovieModel
@@ -36,15 +34,15 @@ class MovieActivity : AppCompatActivity(), MovieContract.View {
     //Override method in MovieContract
     override fun onSuccess(data: MovieModel) {
 
-        val movieList: List<MovieModel.Details>? = data.search
-        //Initialize adapter to recyclerView
-        if(movieList != null){
-            val myAdapter = MyAdapter(movieList, this)
-            rv_movie_list.layoutManager = GridLayoutManager(
-                this, 2, GridLayoutManager.VERTICAL, false)
-            rv_movie_list.adapter = myAdapter
-
-        }
+//        val movieList: List<MovieModel.Details>? = data.search
+//        //Initialize adapter to recyclerView
+//        if(movieList != null){
+//            val myAdapter = MyAdapter(movieList, this)
+//            rv_movie_list.layoutManager = GridLayoutManager(
+//                this, 2, GridLayoutManager.VERTICAL, false)
+//            rv_movie_list.adapter = myAdapter
+//
+//        }
 
     }
 
