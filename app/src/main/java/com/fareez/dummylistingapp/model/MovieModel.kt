@@ -2,28 +2,28 @@ package com.fareez.dummylistingapp.model
 
 import com.google.gson.annotations.SerializedName
 
-class MovieModel {
+data class MovieModel (
 
-        @SerializedName("Search")
-        var search: List<Details>? = null
+    @SerializedName("Search")
+    var search: List<Details>
+)
 
-        class Details {
-            var Title: String = ""
-            var Year: String = ""
-            var Rated: String = ""
-            var Released: String = ""
-            var Director: String = ""
-            var Actors: String = ""
-            var Plot: String = ""
-            var Poster: String = ""
-            var Language: String = ""
-            var imdbRating: Double = 0.0
-            var Production: String = ""
+data class Details (
+            var Title: String,
+            var Year: String,
+            var Rated: String,
+            var Released: String,
+            var Director: String,
+            var Actors: String,
+            var Plot: String,
+            var Poster: String,
+            var Language: String,
+            var imdbRating: Double,
+            var Production: String,
             var imdbID: String = ""
-        }
+)
 
 
-}
 
 
 
