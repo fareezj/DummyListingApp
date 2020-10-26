@@ -28,6 +28,11 @@ interface ApiServiceInterface {
         @Query("i") title: String,
         @Query("apikey") apiKey: String) : Observable <MovieDetailsModel>
 
+//    @GET("/")
+//    fun getMoviesByPage(
+//        @Query("s") title: String,
+//        @Query("page") page: Int,
+//        @Query("apikey") apiKey: String) : Call<MovieModel>
 
     companion object Factory {
         val retrofit: Retrofit by lazy {
@@ -50,19 +55,6 @@ interface ApiServiceInterface {
             return retrofit.create(ApiServiceInterface::class.java)
         }
     }
-
-//    public void onResponse(Call<UserList> call, Response<UserList> response) {
-//
-//        UserList userList = response.body();
-//        Integer text = userList.page;
-//        Integer total = userList.total;
-//        Integer totalPages = userList.totalPages;
-//        List<UserList.Datum> datumList = userList.data;
-//        Toast.makeText(getApplicationContext(), text + " page\n" + total + " total\n" + totalPages + " totalPages\n", Toast.LENGTH_SHORT).show();
-//
-//        for (UserList.Datum datum : datumList) {
-//            Toast.makeText(getApplicationContext(), "id : " + datum.id + " name: " + datum.first_name + " " + datum.last_name + " avatar: " + datum.avatar, Toast.LENGTH_SHORT).show();
-//        }
 
 }
 

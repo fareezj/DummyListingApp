@@ -15,8 +15,8 @@
 
         <EditText
             android:id="@+id/et_search_movie"
-            android:text="Avengers"
-            android:layout_width="300dp"
+            android:hint="Insert movie name here..."
+            android:layout_width="280dp"
             android:layout_height="wrap_content" />
 
         <Button

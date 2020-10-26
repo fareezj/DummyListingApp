@@ -60,6 +60,9 @@ class MovieDetailsModel {
     @SerializedName("Writer")
     val writer: String = ""
 
+    @SerializedName("imdbRating")
+    val imdbRating: String = ""
+
     @SerializedName("Year")
     val year: String = ""
 

@@ -24,12 +24,10 @@ class MyAdapter(private val data: List<MovieModel.Details>, val context: Context
         fun bindItems(movieModel: MovieModel.Details){
             val tvMovieTitle = itemView.findViewById(R.id.tv_movie_title) as TextView
             val tvMovieYear = itemView.findViewById(R.id.tv_movie_year) as TextView
-            val tvMovieID = itemView.findViewById(R.id.tv_movie_id) as TextView
             val ivMoviePoster = itemView.findViewById(R.id.iv_movie) as ImageView
 
             tvMovieTitle.text = movieModel.Title
             tvMovieYear.text = movieModel.Year.toString()
-            tvMovieID.text = movieModel.imdbID
             Picasso.get()
                 .load(movieModel.Poster)
                 .fit()
@@ -51,7 +49,6 @@ class MyAdapter(private val data: List<MovieModel.Details>, val context: Context
 
             //get position selected item
             val model = data.get(position)
-            Log.i("ARYAN", model.Title)
 
             //get movie id (imdbID)
             val fetchedID: String = model.imdbID

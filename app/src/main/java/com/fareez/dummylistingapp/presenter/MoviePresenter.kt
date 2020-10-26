@@ -11,8 +11,10 @@ class MoviePresenter: MovieContract.Presenter {
 
     private val subscriptions = CompositeDisposable()
     private lateinit var view: MovieContract.View
+    //Connecting to Model components (API Service)
     private val apiServices: ApiServiceInterface = ApiServiceInterface.create()
 
+    // Fetch data from API
     override fun getMovies(title: String, apiKey: String) {
         val subscribe = apiServices.getMovies(title, apiKey)
             .subscribeOn(Schedulers.io())
@@ -28,14 +30,15 @@ class MoviePresenter: MovieContract.Presenter {
     }
 
 
-
     override fun subscribe() {
     }
 
+    // Dispose Observer when it is not needed
     override fun unsubcribe() {
         subscriptions.clear()
     }
 
+    // Attach the presenter to its respective activity
     override fun attach(view: MovieActivity) {
         this.view = view
     }
