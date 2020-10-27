@@ -21,8 +21,12 @@ class MovieListAdapter(private val retry: () -> Unit, val context: Context)
     private var state = State.LOADING
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return if (viewType == DATA_VIEW_TYPE) MovieViewHolder.create(parent)
-            else ListFooterViewHolder.create(retry, parent)
+        return if (viewType == DATA_VIEW_TYPE) {
+            MovieViewHolder.create(parent)
+        }
+        else {
+            ListFooterViewHolder.create(retry, parent)
+        }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -46,7 +50,6 @@ class MovieListAdapter(private val retry: () -> Unit, val context: Context)
             (holder as ListFooterViewHolder).bind(state)
         }
     }
-
 
     companion object{
         val MovieDiffCallback = object: DiffUtil.ItemCallback<Details>(){
