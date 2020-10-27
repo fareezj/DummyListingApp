@@ -6,6 +6,7 @@ import com.fareez.dummylistingapp.util.Constants
 import com.fareez.dummylistingapp.util.DateTypeDeserializer
 import com.google.gson.GsonBuilder
 import io.reactivex.Observable
+import io.reactivex.Single
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -28,30 +29,19 @@ interface ApiServiceInterface {
         @Query("i") title: String,
         @Query("apikey") apiKey: String) : Observable <MovieDetailsModel>
 
-//    @GET("/")
-//    fun getMoviesByPage(
-//        @Query("s") title: String,
-//        @Query("page") page: Int,
-//        @Query("apikey") apiKey: String) : Call<MovieModel>
+    @GET("/")
+    fun getMoviesByPage(
+        @Query("s") title: String,
+        @Query("page") page: Int,
+        @Query("apikey") apiKey: String) : Single<MovieModel>
 
-    companion object Factory {
-        val retrofit: Retrofit by lazy {
-            Retrofit.Builder()
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(
-                    GsonConverterFactory.create(
-                        GsonBuilder()
-                            .registerTypeAdapter(Date::class.java, DateTypeDeserializer())
-                            .setLenient().create()))
+    companion object {
+        fun getService(): ApiServiceInterface {
+            val retrofit = Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
-                .client(
-                    OkHttpClient.Builder()
-                        .readTimeout(120, TimeUnit.SECONDS)
-                        .connectTimeout(120, TimeUnit.SECONDS)
-                        .build())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
                 .build()
-        }
-        fun create(): ApiServiceInterface {
             return retrofit.create(ApiServiceInterface::class.java)
         }
     }
