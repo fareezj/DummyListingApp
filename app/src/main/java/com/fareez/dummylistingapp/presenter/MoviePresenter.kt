@@ -12,7 +12,7 @@ class MoviePresenter: MovieContract.Presenter {
     private val subscriptions = CompositeDisposable()
     private lateinit var view: MovieContract.View
     //Connecting to Model components (API Service)
-    private val apiServices: ApiServiceInterface = ApiServiceInterface.create()
+    private val apiServices: ApiServiceInterface = ApiServiceInterface.getService()
 
     // Fetch data from API
     override fun getMovies(title: String, apiKey: String) {

@@ -36,15 +36,15 @@ class MovieActivity : AppCompatActivity(), MovieContract.View {
     //Override method in MovieContract
     override fun onSuccess(data: MovieModel) {
 
-        val movieList: List<MovieModel.Details>? = data.search
-        //Initialize adapter to recyclerView
-        if(movieList != null){
-            val myAdapter = MyAdapter(movieList, this)
-            rv_movie_list.layoutManager = GridLayoutManager(
-                this, 2, GridLayoutManager.VERTICAL, false)
-            rv_movie_list.adapter = myAdapter
-
-        }
+//        val movieList: List<MovieModel.Details>? = data.search
+//        //Initialize adapter to recyclerView
+//        if(movieList != null){
+//            val myAdapter = MyAdapter(movieList, this)
+//            rv_movie_list.layoutManager = GridLayoutManager(
+//                this, 2, GridLayoutManager.VERTICAL, false)
+//            rv_movie_list.adapter = myAdapter
+//
+//        }
 
     }
 
