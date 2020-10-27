@@ -43,7 +43,7 @@ class MovieListActivity : AppCompatActivity() {
     }
 
     private fun initAdapter(){
-        movieListAdapter = MovieListAdapter{ viewModel.retry() }
+        movieListAdapter = MovieListAdapter({ viewModel.retry() }, this)
         recycler_view.adapter = movieListAdapter
         viewModel.movieList.observe(this,
             Observer {

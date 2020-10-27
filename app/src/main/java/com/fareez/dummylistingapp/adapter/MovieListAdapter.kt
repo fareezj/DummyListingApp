@@ -10,9 +10,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.fareez.dummylistingapp.model.Details
 import com.fareez.dummylistingapp.network.State
+import com.fareez.dummylistingapp.ui.MovieDetailsActivity
 import com.fareez.dummylistingapp.ui.MovieListActivity
 
-class MovieListAdapter(private val retry: () -> Unit)
+class MovieListAdapter(private val retry: () -> Unit, val context: Context)
     : PagedListAdapter<Details, RecyclerView.ViewHolder>(MovieDiffCallback){
 
     private val DATA_VIEW_TYPE = 1
@@ -38,9 +39,9 @@ class MovieListAdapter(private val retry: () -> Unit)
 
                 Log.i("Aryan", fetchedID)
 
-//                val intent = Intent(context, MovieDetailsActivity::class.java)
-//                intent.putExtra("movieID", fetchedID)
-//                context.startActivity(intent)
+                val intent = Intent(context, MovieDetailsActivity::class.java)
+                intent.putExtra("movieID", fetchedID)
+                context.startActivity(intent)
             }
         }
         else {
