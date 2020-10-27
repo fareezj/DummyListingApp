@@ -21,7 +21,6 @@ class MovieDataSource (
     var state: MutableLiveData<State> = MutableLiveData()
     private var retryCompletable: Completable? = null
 
-
     override fun loadInitial(params: LoadInitialParams<Int>, callback: LoadInitialCallback<Int, Details>) {
         updateState(State.LOADING)
         compositeDisposable.add(
@@ -29,10 +28,12 @@ class MovieDataSource (
                         .subscribe(
                                 { response ->
                                     updateState(State.DONE)
-                                    callback.onResult(response.search,
+                                    if(response != null){
+                                        callback.onResult(response.search,
                                             null,
                                             2
-                                    )
+                                        )
+                                    }
                                 },
                                 {
                                     updateState(State.ERROR)
@@ -50,9 +51,11 @@ class MovieDataSource (
                         .subscribe(
                                 { response ->
                                     updateState(State.DONE)
-                                    callback.onResult(response.search,
+                                    if(response != null){
+                                        callback.onResult(response.search,
                                             params.key + 1
-                                    )
+                                        )
+                                    }
                                 },
                                 {
                                     updateState(State.ERROR)

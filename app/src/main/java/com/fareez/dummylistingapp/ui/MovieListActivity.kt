@@ -2,6 +2,7 @@ package com.fareez.dummylistingapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
@@ -49,7 +50,11 @@ class MovieListActivity : AppCompatActivity() {
         recycler_view.adapter = movieListAdapter
         viewModel.movieList.observe(this,
             Observer {
-                movieListAdapter.submitList(it)
+                it?.let {
+                    // Now foo is non-null
+                    movieListAdapter.submitList(it)
+                    Log.i("Aryan", it.toString())
+                }
             })
     }
 

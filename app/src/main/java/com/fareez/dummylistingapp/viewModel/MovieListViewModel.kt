@@ -10,6 +10,7 @@ import com.fareez.dummylistingapp.network.State
 import com.fareez.dummylistingapp.network.api.ApiServiceInterface
 import com.fareez.dummylistingapp.network.dataSource.MovieDataSource
 import com.fareez.dummylistingapp.network.dataSource.MovieDataSourceFactory
+import com.fareez.dummylistingapp.presenter.MovieContract
 import io.reactivex.disposables.CompositeDisposable
 
 class MovieListViewModel: ViewModel() {
