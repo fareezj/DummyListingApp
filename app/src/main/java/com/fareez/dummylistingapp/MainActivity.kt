@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fareez.dummylistingapp.ui.MovieActivity
+import com.fareez.dummylistingapp.ui.MovieListActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -12,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val intent = Intent(this, MovieActivity::class.java)
+        val intent = Intent(this, MovieListActivity::class.java)
         startActivity(intent)
 
 //        //Create placesList object
