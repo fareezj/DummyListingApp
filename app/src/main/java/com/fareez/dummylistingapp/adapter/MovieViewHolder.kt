@@ -7,16 +7,17 @@ import android.view.ViewGroup
 import com.fareez.dummylistingapp.R
 import com.fareez.dummylistingapp.model.Details
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.item_news.view.*
+import kotlinx.android.synthetic.main.list_item.view.*
 
 
 class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun bind(movie: Details?){
         if(movie != null){
-            itemView.txt_news_name.text = movie.Title
+            itemView.tv_movie_title.text = movie.Title
+            itemView.tv_movie_year.text = movie.Year
             if(!movie.Poster.isNullOrEmpty()){
-                Picasso.get().load(movie.Poster).into(itemView.img_news_banner)
+                Picasso.get().load(movie.Poster).into(itemView.iv_movie)
             }
         }
 
@@ -25,7 +26,7 @@ class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     companion object{
         fun create(parent: ViewGroup): MovieViewHolder {
             val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.item_news, parent, false)
+                    .inflate(R.layout.list_item, parent, false)
             return MovieViewHolder(view)
         }
     }
