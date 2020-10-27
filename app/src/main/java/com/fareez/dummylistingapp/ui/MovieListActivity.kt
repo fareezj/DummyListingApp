@@ -3,6 +3,7 @@ package com.fareez.dummylistingapp.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.fareez.dummylistingapp.R
@@ -33,7 +34,8 @@ class MovieListActivity : AppCompatActivity() {
 
         btn_search_movie.setOnClickListener {
             val movieInput = et_search_movie.text.toString()
-            Constants.MOVIE_TITLE = movieInput
+            val refinedMovieInput = movieInput.replace("\\s".toRegex(), "+")
+            Constants.MOVIE_TITLE = refinedMovieInput
             recycler_view.recycledViewPool.clear();
             viewModel.refresh()
             initAdapter()

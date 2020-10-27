@@ -37,8 +37,6 @@ class MovieListAdapter(private val retry: () -> Unit, val context: Context)
                 //get movie id (imdbID)
                 val fetchedID: String = model?.imdbID ?: ""
 
-                Log.i("Aryan", fetchedID)
-
                 val intent = Intent(context, MovieDetailsActivity::class.java)
                 intent.putExtra("movieID", fetchedID)
                 context.startActivity(intent)
@@ -53,7 +51,7 @@ class MovieListAdapter(private val retry: () -> Unit, val context: Context)
     companion object{
         val MovieDiffCallback = object: DiffUtil.ItemCallback<Details>(){
             override fun areItemsTheSame(oldItem: Details, newItem: Details): Boolean {
-                return oldItem.Title == newItem.Title
+                return oldItem.imdbID == newItem.imdbID
             }
 
             override fun areContentsTheSame(oldItem: Details, newItem: Details): Boolean {
