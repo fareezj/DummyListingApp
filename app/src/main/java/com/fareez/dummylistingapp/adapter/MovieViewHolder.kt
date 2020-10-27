@@ -15,8 +15,13 @@ class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     fun bind(movie: Details?){
         if(movie != null){
             itemView.tv_movie_title.text = movie.Title
+            itemView.tv_movie_year.text = movie.Year
             if(!movie.Poster.isNullOrEmpty()){
-                Picasso.get().load(movie.Poster).into(itemView.img_news_banner)
+                Picasso.get()
+                    .load(movie.Poster)
+                    .fit()
+                    .error(android.R.drawable.ic_menu_report_image)
+                    .into(itemView.iv_movie)
             }
         }
 
